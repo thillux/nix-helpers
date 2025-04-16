@@ -81,6 +81,10 @@
 
                 pkgsKernel.stdenv.cc
                 gcc
+                libelf
+                elfutils
+
+                openssl
               ]
               ++ pkgs.linux.nativeBuildInputs);
             runScript = pkgs.writeScript "init.sh" ''
