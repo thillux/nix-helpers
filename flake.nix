@@ -85,8 +85,8 @@
               ++ pkgs.linux.nativeBuildInputs);
             runScript = pkgs.writeScript "init.sh" ''
               # set the cross-compilation environment variables.
-              export CROSS_COMPILE=riscv64-unknown-linux-gnu-
-              export ARCH=riscv
+              # export CROSS_COMPILE=aarch64-unknown-linux-gnu-
+              # export ARCH=arm64
               export PKG_CONFIG_PATH="${pkgs.ncurses.dev}/lib/pkgconfig:"
               exec bash
             '';
