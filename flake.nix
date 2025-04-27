@@ -95,6 +95,34 @@
               exec bash
             '';
           }).env;
+
+        cuda =
+          let
+            pkgs = import nixpkgs {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+              config.cudaSupport = true;
+            };
+          in
+          pkgs.mkShell {
+            buildInputs = with pkgs; [
+              cudatoolkit
+              cudaPackages.cuda_cudart
+              freeimage
+              glfw3
+            ];
+
+            nativeBuildInputs = with pkgs; [
+              autoAddDriverRunpath
+              pkg-config
+            ];
+
+            runScript = pkgs.writeScript "init.sh" ''
+              export CUDA_PATH=${pkgs.cudatoolkit}
+              export LD_LIBRARY_PATH="${pkgs.linuxPackages.nvidia_x11}/lib:$LD_LIBRARY_PATH"
+              export LD_LIBRARY_PATH="${pkgs.cudaPackages.cudatoolkit}/lib64:$LD_LIBRARY_PATH"
+            '';
+          };
       };
     };
 }
