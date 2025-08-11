@@ -31,21 +31,21 @@
           in
           pkgs.mkShell {
             buildInputs = with pkgs; [
-              (esdm.overrideAttrs (prev: {
-                # src = LOCAL_PATH;
-                src = fetchFromGitHub {
-                  owner = "smuellerDD";
-                  repo = "esdm";
-                  rev = "master";
-                  sha256 = "sha256-1/Nlj4aU/8CIqpael7Xq10HFyj0S8H3K3m7xfiVpDXY=";
-                };
-                #mesonBuildType = "debug";
-                #dontStrip = true;
-                #mesonFlags = prev.mesonFlags ++ [
-                #    "-Dstrip=false"
-                #    "-Ddebug=true"
-                #];
-              }))
+              # (esdm.overrideAttrs (prev: {
+              #   # src = LOCAL_PATH;
+              #   src = fetchFromGitHub {
+              #     owner = "smuellerDD";
+              #     repo = "esdm";
+              #     rev = "master";
+              #     sha256 = "sha256-1/Nlj4aU/8CIqpael7Xq10HFyj0S8H3K3m7xfiVpDXY=";
+              #   };
+              #   #mesonBuildType = "debug";
+              #   #dontStrip = true;
+              #   #mesonFlags = prev.mesonFlags ++ [
+              #   #    "-Dstrip=false"
+              #   #    "-Ddebug=true"
+              #   #];
+              # }))
               protobufc
               openssl
               botan3
